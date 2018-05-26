@@ -177,7 +177,9 @@ uint16_t max_display_update_time = 0;
   void lcd_move_menu();
   void lcd_control_menu();
   void lcd_control_temperature_menu();
+  #if DISABLED(SLIM_LCD_MENUS) || ENABLED(BABYSTEP_ZPROBE_OFFSET) || ENABLED(ABORT_ON_ENDSTOP_HIT_FEATURE_ENABLED)
   void lcd_control_motion_menu();
+  #endif
 
   #if DISABLED(SLIM_LCD_MENUS)
     void lcd_control_temperature_preheat_material1_settings_menu();
@@ -3302,8 +3304,9 @@ void lcd_quick_feedback(const bool clear_buttons) {
     START_MENU();
     MENU_BACK(MSG_MAIN);
     MENU_ITEM(submenu, MSG_TEMPERATURE, lcd_control_temperature_menu);
+    #if DISABLED(SLIM_LCD_MENUS) || ENABLED(BABYSTEP_ZPROBE_OFFSET) || ENABLED(ABORT_ON_ENDSTOP_HIT_FEATURE_ENABLED)
     MENU_ITEM(submenu, MSG_MOTION, lcd_control_motion_menu);
-
+    #endif
     #if DISABLED(NO_VOLUMETRICS) || ENABLED(ADVANCED_PAUSE_FEATURE)
       MENU_ITEM(submenu, MSG_FILAMENT, lcd_control_filament_menu);
     #elif ENABLED(LIN_ADVANCE)
@@ -3774,7 +3777,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
    * "Control" > "Motion" submenu
    *
    */
-
+  #if DISABLED(SLIM_LCD_MENUS) || ENABLED(BABYSTEP_ZPROBE_OFFSET) || ENABLED(ABORT_ON_ENDSTOP_HIT_FEATURE_ENABLED)
   void lcd_control_motion_menu() {
     START_MENU();
     MENU_BACK(MSG_CONTROL);
@@ -3808,6 +3811,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
 
     END_MENU();
   }
+  #endif
 
   #if DISABLED(NO_VOLUMETRICS) || ENABLED(ADVANCED_PAUSE_FEATURE)
     /**
