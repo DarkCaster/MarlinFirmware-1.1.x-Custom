@@ -93,7 +93,10 @@ void ST7920_Lite_Status_Screen::write_number(const int16_t value, const uint8_t 
     case 4: fmt = PSTR("%4d"); break;
     case 3: fmt = PSTR("%3d"); break;
     case 2: fmt = PSTR("%2d"); break;
-    case 1: fmt = PSTR("%1d"); break;
+    case 1:
+    default:
+      fmt = PSTR("%1d");
+      break;
   }
   sprintf_P(str, fmt, value);
   write_str(str);
