@@ -610,7 +610,7 @@
 #define DEFAULT_XJERK                 10.0
 #define DEFAULT_YJERK                 10.0
 #define DEFAULT_ZJERK                  0.3
-#define DEFAULT_EJERK                 10.0
+#define DEFAULT_EJERK                 20.0
 
 /**
  * Realtime Jerk Control
