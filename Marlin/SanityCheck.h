@@ -278,7 +278,9 @@
 #elif defined(JUNCTION_DEVIATION_FACTOR)
   #error "JUNCTION_DEVIATION_FACTOR is now JUNCTION_DEVIATION_MM. Please update your configuration."
 #elif defined(JUNCTION_ACCELERATION_FACTOR)
-  #error "JUNCTION_ACCELERATION_FACTOR is now JUNCTION_ACCELERATION. Please update your configuration."
+  #error "JUNCTION_ACCELERATION_FACTOR is obsolete. Delete it from Configuration_adv.h."
+#elif defined(JUNCTION_ACCELERATION)
+  #error "JUNCTION_ACCELERATION is obsolete. Delete it from Configuration_adv.h."
 #endif
 
 #define BOARD_MKS_13     -47
@@ -551,12 +553,8 @@ static_assert(X_MAX_LENGTH >= X_BED_SIZE && Y_MAX_LENGTH >= Y_BED_SIZE,
 /**
  * Single Stepper Dual Extruder with switching servo
  */
-#if ENABLED(SWITCHING_EXTRUDER)
-  #if ENABLED(SINGLENOZZLE)
-    #error "SWITCHING_EXTRUDER and SINGLENOZZLE are incompatible."
-  #elif NUM_SERVOS < 1
-    #error "SWITCHING_EXTRUDER requires NUM_SERVOS >= 1."
-  #endif
+#if ENABLED(SWITCHING_EXTRUDER) && NUM_SERVOS < 1
+  #error "SWITCHING_EXTRUDER requires NUM_SERVOS >= 1."
 #endif
 
 /**
