@@ -373,9 +373,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Anet E10
-  #define  DEFAULT_Kp 30.38
-  #define  DEFAULT_Ki 2.39
-  #define  DEFAULT_Kd 96.44
+  #define  DEFAULT_Kp 34.95
+  #define  DEFAULT_Ki 2.84
+  #define  DEFAULT_Kd 107.36
 
 #endif // PIDTEMP
 
@@ -1200,7 +1200,7 @@
 //
 #define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
 #define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
-//#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
+#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
 
 //
 // M100 Free Memory Watcher
