@@ -815,7 +815,7 @@
  *   3 : Minimum for TB6600 stepper drivers
  *  30 : Minimum for TB6560 stepper drivers
  */
-#define MINIMUM_STEPPER_PULSE 2
+#define MINIMUM_STEPPER_PULSE 3
 
 /**
  * Maximum stepping rate (in Hz) the stepper driver allows
