@@ -372,10 +372,17 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // Anet E10
-  #define  DEFAULT_Kp 34.95
-  #define  DEFAULT_Ki 2.84
-  #define  DEFAULT_Kd 107.36
+  // Anet E10, using Improved Fan Shroud: https://www.thingiverse.com/thing:2481362
+  // calibrated at 225 C
+  //#define  DEFAULT_Kp 34.95
+  //#define  DEFAULT_Ki 2.84
+  //#define  DEFAULT_Kd 107.36
+
+  // Anet E10, using improved fan shroud and cotton thermal insulation tape
+  // calibrated at 225 C
+  #define  DEFAULT_Kp 26.36
+  #define  DEFAULT_Ki 1.92
+  #define  DEFAULT_Kd 90.68
 
 #endif // PIDTEMP
 
@@ -570,6 +577,8 @@
 #define XY_STEPS (NEMA17_MOTOR_STEPS / (PULLEY_PITCH * PULLEY_TEETH))
 #define Z_STEPS (NEMA17_MOTOR_STEPS / Z_ROD_PITCH)
 
+// Extruder's steps\mm was set for use with custom geared extruder drive: https://github.com/DarkCaster/3DPrintingStuff/tree/master/NEMA17_GearedExtruderDrive
+// For default Anet E10 direct extruder drive correct value is 95
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 817 }
 
 /**
@@ -577,6 +586,8 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
+// Extruder feedrate was reduced for use with custom geared extruder drive (see link above)
+// For default Anet E10 direct extruder drive you may set E0 feedrate value to 50
 #define DEFAULT_MAX_FEEDRATE          { 120, 120, 4, 25 }
 
 /**
@@ -815,6 +826,8 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
+// Current value was chosen for use with custom geared extruder drive (see link above)
+// For default Anet E10 direct extruder drive - correct value is true
 #define INVERT_E0_DIR false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
