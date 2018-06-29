@@ -4701,6 +4701,10 @@ void home_all_axes() { gcode_G28(true); }
      */
     if (!g29_in_progress) {
 
+      #if ENABLED(DUAL_X_CARRIAGE)
+        if (active_extruder != 0) tool_change(0);
+      #endif
+
       #if ENABLED(PROBE_MANUALLY) || ENABLED(AUTO_BED_LEVELING_LINEAR)
         abl_probe_index = -1;
       #endif
@@ -9170,7 +9174,7 @@ inline void gcode_M205() {
       const float junc_dev = parser.value_linear_units();
       if (WITHIN(junc_dev, 0.01, 0.3)) {
         planner.junction_deviation_mm = junc_dev;
-        planner.recalculate_max_e_jerk_factor();
+        planner.recalculate_max_e_jerk();
       }
       else {
         SERIAL_ERROR_START();
@@ -10734,9 +10738,9 @@ inline void gcode_M502() {
   /**
    * M701: Load filament
    *
-   *  T[extruder] - Optional extruder number. Current extruder if omitted.
-   *  Z[distance] - Move the Z axis by this distance
-   *  L[distance] - Extrude distance for insertion (positive value) (manual reload)
+   *  T<extruder> - Optional extruder number. Current extruder if omitted.
+   *  Z<distance> - Move the Z axis by this distance
+   *  L<distance> - Extrude distance for insertion (positive value) (manual reload)
    *
    *  Default values are used for omitted arguments.
    */
@@ -10793,10 +10797,10 @@ inline void gcode_M502() {
   /**
    * M702: Unload filament
    *
-   *  T[extruder] - Optional extruder number. If omitted, current extruder
+   *  T<extruder> - Optional extruder number. If omitted, current extruder
    *                (or ALL extruders with FILAMENT_UNLOAD_ALL_EXTRUDERS).
-   *  Z[distance] - Move the Z axis by this distance
-   *  U[distance] - Retract distance for removal (manual reload)
+   *  Z<distance> - Move the Z axis by this distance
+   *  U<distance> - Retract distance for removal (manual reload)
    *
    *  Default values are used for omitted arguments.
    */
@@ -10864,6 +10868,38 @@ inline void gcode_M502() {
   }
 
 #endif // FILAMENT_LOAD_UNLOAD_GCODES
+
+#if ENABLED(MAX7219_GCODE)
+  /**
+   * M7219: Control the Max7219 LED matrix
+   * 
+   *  I         - Initialize (clear) the matrix
+   *  C<column> - Set a column to the 8-bit value V
+   *  R<row>    - Set a row to the 8-bit value V
+   *  X<pos>    - X position of an LED to set or toggle
+   *  Y<pos>    - Y position of an LED to set or toggle
+   *  V<value>  - The 8-bit value or on/off state to set
+   */
+  inline void gcode_M7219() {
+    if (parser.seen('I'))
+      Max7219_Clear();
+    else if (parser.seenval('R')) {
+      const uint8_t r = parser.value_int();
+      Max7219_Set_Row(r, parser.byteval('V'));
+    }
+    else if (parser.seenval('C')) {
+      const uint8_t c = parser.value_int();
+      Max7219_Set_Column(c, parser.byteval('V'));
+    }
+    else if (parser.seenval('X') || parser.seenval('Y')) {
+      const uint8_t x = parser.byteval('X'), y = parser.byteval('Y');
+      if (parser.seenval('V'))
+        Max7219_LED_Set(x, y, parser.boolval('V'));
+      else
+        Max7219_LED_Toggle(x, y);
+    }
+  }
+#endif // MAX7219_GCODE
 
 #if ENABLED(LIN_ADVANCE)
   /**
@@ -12508,6 +12544,10 @@ void process_parsed_command() {
         case 702: gcode_M702(); break;                            // M702: Unload Filament
       #endif
 
+      #if ENABLED(MAX7219_GCODE)
+        case 7219: gcode_M7219(); break;                          // M7219: Set LEDs, columns, and rows
+      #endif
+
       #if ENABLED(DEBUG_GCODE_PARSER)
         case 800: parser.debug(); break;                          // M800: GCode Parser Test for M
       #endif
@@ -12591,8 +12631,6 @@ void process_next_command() {
       M100_dump_routine("   Command Queue:", (const char*)command_queue, (const char*)(command_queue + sizeof(command_queue)));
     #endif
   }
-
-  reset_stepper_timeout(); // Keep steppers powered
 
   // Parse the next command in the queue
   parser.parse(current_command);
@@ -14195,7 +14233,7 @@ void idle(
 ) {
   #if ENABLED(MAX7219_DEBUG)
     Max7219_idle_tasks();
-  #endif  // MAX7219_DEBUG
+  #endif
 
   lcd_update();
 
