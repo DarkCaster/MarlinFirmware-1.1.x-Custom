@@ -1169,7 +1169,7 @@
   // to override the above measurements:
   #define XY_SKEW_FACTOR 0.0
 
-  //#define SKEW_CORRECTION_FOR_Z
+  #define SKEW_CORRECTION_FOR_Z
   #if ENABLED(SKEW_CORRECTION_FOR_Z)
     //#define XZ_DIAG_AC 282.8427124746
     //#define XZ_DIAG_BD 282.8427124746
