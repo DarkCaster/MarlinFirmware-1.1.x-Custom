@@ -10527,15 +10527,15 @@ inline void gcode_M502() {
 
     if (!ijk) {
       SERIAL_ECHO_START();
-      SERIAL_ECHOPGM(MSG_SKEW_FACTOR " XY: ");
+      SERIAL_ECHOPGM(MSG_SKEW_FACTOR " I:");
       SERIAL_ECHO_F(planner.xy_skew_factor, 6);
-      SERIAL_EOL();
       #if ENABLED(SKEW_CORRECTION_FOR_Z)
-        SERIAL_ECHOPAIR(" XZ: ", planner.xz_skew_factor);
-        SERIAL_ECHOLNPAIR(" YZ: ", planner.yz_skew_factor);
-      #else
-        SERIAL_EOL();
+        SERIAL_ECHOPGM(" J:");
+        SERIAL_ECHO_F(planner.xz_skew_factor, 6);
+        SERIAL_ECHOPGM(" K:");
+        SERIAL_ECHO_F(planner.yz_skew_factor, 6);
       #endif
+      SERIAL_EOL();
     }
   }
 
