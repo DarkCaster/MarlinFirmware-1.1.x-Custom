@@ -833,9 +833,8 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-// Current value was chosen for use with custom geared extruder drive (see link above)
-// For default Anet E10 direct extruder drive - correct value is true
-#define INVERT_E0_DIR false
+// For default Anet E10 direct extruder drive and custom extruder (https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2), valid value is true
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
