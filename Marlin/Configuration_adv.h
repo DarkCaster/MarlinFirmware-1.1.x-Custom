@@ -675,7 +675,7 @@
  */
 #if ENABLED(DOGLCD)
   // Show SD percentage next to the progress bar
-  //#define DOGM_SD_PERCENT
+  #define DOGM_SD_PERCENT
 
   // Enable to save many cycles by drawing a hollow frame on the Info Screen
   #define XYZ_HOLLOW_FRAME
@@ -725,6 +725,8 @@
 // in case the firmware gets stuck and doesn't do temperature regulation.
 #define USE_WATCHDOG
 
+// NOTE: WATCHDOG_RESET_MANUAL option not needed, when using ArduinoMega2560 with optiboot bootloader that perform proper watchdog reset
+// (from this repo: https://github.com/DarkCaster/Arduino-Custom-Boards)
 #if ENABLED(USE_WATCHDOG)
   // If you have a watchdog reboot in an ArduinoMega2560 then the device will hang forever, as a watchdog reset will leave the watchdog on.
   // The "WATCHDOG_RESET_MANUAL" goes around this by not using the hardware reset.
@@ -825,7 +827,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-#define MINIMUM_STEPPER_DIR_DELAY 200
+#define MINIMUM_STEPPER_DIR_DELAY 650
 
 /**
  * Minimum stepper driver pulse width (in µs)
@@ -838,7 +840,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-#define MINIMUM_STEPPER_PULSE 1
+#define MINIMUM_STEPPER_PULSE 2
 
 /**
  * Maximum stepping rate (in Hz) the stepper driver allows
@@ -852,7 +854,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-#define MAXIMUM_STEPPER_RATE 500000
+#define MAXIMUM_STEPPER_RATE 250000
 
 // @section temperature
 
