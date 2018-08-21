@@ -75,7 +75,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_CONFIG_H_AUTHOR "DarkCaster" // Who made the changes.
-#define SHOW_BOOTSCREEN
+//#define SHOW_BOOTSCREEN
 //#define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 //#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
 
@@ -232,7 +232,7 @@
  *
  * :{ 0:'No power switch', 1:'ATX', 2:'X-Box 360' }
  */
-#define POWER_SUPPLY 0
+#define POWER_SUPPLY 1
 
 #if POWER_SUPPLY > 1
   // Enable this option to leave the PSU off at startup.
@@ -593,28 +593,33 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define NEMA17_FULL_STEPS 200.0
-#define NEMA17_MICROSTEPS 16.0
-#define NEMA17_MOTOR_STEPS (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS)
-#define PULLEY_PITCH 2.0
-#define PULLEY_TEETH 20.0
-#define Z_ROD_PITCH 8
 
-#define XY_STEPS (NEMA17_MOTOR_STEPS / (PULLEY_PITCH * PULLEY_TEETH))
-#define Z_STEPS (NEMA17_MOTOR_STEPS / Z_ROD_PITCH)
+// same for all axes
+#define NEMA17_FULL_STEPS 200.0
+
+// X and Y, using 1/32 microstepping for higher resolution -> 160 steps/mm
+#define NEMA17_MICROSTEPS_XY 32.0
+#define NEMA17_MOTOR_STEPS_XY (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_XY)
+#define XY_PULLEY_PITCH 2.0
+#define XY_PULLEY_TEETH 20.0
+#define XY_STEPS (NEMA17_MOTOR_STEPS_XY / (XY_PULLEY_PITCH * XY_PULLEY_TEETH))
+
+// Z, using 1/4 microstepping that leads us to huge 1000 steps/mm for M5 threaded rod
+#define NEMA17_MICROSTEPS_Z 4.0
+#define Z_ROD_PITCH 0.8
+#define NEMA17_MOTOR_STEPS_Z (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_Z)
+#define Z_STEPS (NEMA17_MOTOR_STEPS_Z / Z_ROD_PITCH)
 
 // Extruder's steps\mm was set for use with custom geared extruder drive: https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2
-// For default Anet E10 direct extruder drive correct value is 95
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 252.63f }
+// using 1/8 micro-stepping
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 126.315f }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-// Extruder feedrate was reduced for use with custom geared extruder drive (see link above)
-// For default Anet E10 direct extruder drive you may set E0 feedrate value to 50
-#define DEFAULT_MAX_FEEDRATE          { 120, 120, 4, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 120, 120, 8, 50 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -647,7 +652,7 @@
 #define DEFAULT_XJERK                 20.0
 #define DEFAULT_YJERK                 20.0
 #define DEFAULT_ZJERK                  0.3
-#define DEFAULT_EJERK                 12.5
+#define DEFAULT_EJERK                 20.0
 
 /**
  * S-Curve Acceleration
@@ -847,14 +852,14 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR true
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR false
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-// For default Anet E10 direct extruder drive and custom extruder (https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2), valid value is true
+// For custom extruder (https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2) - valid value is true
 #define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
@@ -874,13 +879,13 @@
 // :[-1,1]
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
-#define Z_HOME_DIR -1
+#define Z_HOME_DIR 1
 
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 220
-#define Y_BED_SIZE 270
+#define X_BED_SIZE 165
+#define Y_BED_SIZE 170
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -888,7 +893,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 250
+#define Z_MAX_POS 120
 
 /**
  * Software Endstops
@@ -916,7 +921,7 @@
 #endif
 
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS) || ENABLED(MAX_SOFTWARE_ENDSTOPS)
-  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
+  #define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
 #endif
 
 /**
