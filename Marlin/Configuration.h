@@ -234,16 +234,16 @@
  */
 #define POWER_SUPPLY 1
 
-#if POWER_SUPPLY > 1
+#if POWER_SUPPLY >= 1
   // Enable this option to leave the PSU off at startup.
   // Power to steppers and heaters will need to be turned on with M80.
   #define PS_DEFAULT_OFF
 
   #define AUTO_POWER_CONTROL        // Enable automatic control of the PS_ON pin
   #if ENABLED(AUTO_POWER_CONTROL)
-    //#define AUTO_POWER_FANS           // Turn on PSU if fans need power
+    #define AUTO_POWER_FANS           // Turn on PSU if fans need power
     #define AUTO_POWER_E_FANS
-    //#define AUTO_POWER_CONTROLLERFAN
+    #define AUTO_POWER_CONTROLLERFAN
     #define POWER_TIMEOUT 120
   #endif
 
@@ -1441,7 +1441,7 @@
  * Enable one of the following items for a slower SPI transfer speed.
  * This may be required to resolve "volume init" errors.
  */
-//#define SPI_SPEED SPI_HALF_SPEED
+#define SPI_SPEED SPI_HALF_SPEED
 //#define SPI_SPEED SPI_QUARTER_SPEED
 //#define SPI_SPEED SPI_EIGHTH_SPEED
 
