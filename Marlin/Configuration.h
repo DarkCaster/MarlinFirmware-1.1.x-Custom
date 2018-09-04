@@ -244,7 +244,7 @@
     #define AUTO_POWER_FANS           // Turn on PSU if fans need power
     #define AUTO_POWER_E_FANS
     #define AUTO_POWER_CONTROLLERFAN
-    #define POWER_TIMEOUT 120
+    #define POWER_TIMEOUT 240
   #endif
 
 #endif
@@ -883,8 +883,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 165
-#define Y_BED_SIZE 170
+#define X_BED_SIZE 163
+#define Y_BED_SIZE 155
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -892,7 +892,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 120
+#define Z_MAX_POS 118
 
 /**
  * Software Endstops
