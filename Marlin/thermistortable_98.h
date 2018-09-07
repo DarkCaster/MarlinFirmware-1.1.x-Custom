@@ -39,8 +39,8 @@ const short temptable_98[][2] PROGMEM = {
   { OV( 193), 170 },
   { OV( 233), 160 },
   { OV( 281), 150 },
-  { OV( 427), 125 },
-  { OV( 608), 100 },
+  { OV( 426), 125 },
+  { OV( 606), 100 },
   { OV( 780),  75 },
   { OV( 905),  50 },
   // measurements begins here, values below - inaccurate
