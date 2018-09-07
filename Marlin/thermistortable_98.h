@@ -22,12 +22,15 @@
 
 // Noname crappy 100K thermistor that I use for hotend
 const short temptable_98[][2] PROGMEM = {
-  { OV(  1), 500 },
-  { OV( 30), 270 },
-  { OV( 35), 265 },
-  { OV( 40), 260 },
-  // *** test stopped here ***
-  { OV( 45), 255 },
+  // safety
+  { OV( 1), 500 },
+  { OV( 10), 400 },
+  // measurements ends here
+  { OV( 34), 272 },
+  { OV( 37), 268 },
+  { OV( 39), 265 },
+  { OV( 42), 260 },
+  { OV( 45), 257 },
   { OV( 50), 250 },
   { OV( 55), 245 },
   { OV( 60), 240 },
@@ -61,6 +64,7 @@ const short temptable_98[][2] PROGMEM = {
   { OV( 912),  50 },
   { OV( 944),  40 },
   { OV( 968),  30 },
+  // measurements begins here, values below - inaccurate
   { OV( 981),  23 },
   { OV( 991),  17 },
   { OV(1001),   9 },
