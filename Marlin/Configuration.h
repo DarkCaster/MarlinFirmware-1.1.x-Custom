@@ -605,8 +605,8 @@
 #define XY_STEPS (NEMA17_MOTOR_STEPS_XY / (XY_PULLEY_PITCH * XY_PULLEY_TEETH))
 
 // Z, using 1/4 microstepping that leads us to huge 1000 steps/mm for M5 threaded rod
-#define NEMA17_MICROSTEPS_Z 4.0
-#define Z_ROD_PITCH 0.8
+#define NEMA17_MICROSTEPS_Z 32.0
+#define Z_ROD_PITCH 8.0
 #define NEMA17_MOTOR_STEPS_Z (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_Z)
 #define Z_STEPS (NEMA17_MOTOR_STEPS_Z / Z_ROD_PITCH)
 
