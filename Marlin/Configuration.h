@@ -597,15 +597,16 @@
 // same for all axes
 #define NEMA17_FULL_STEPS 200.0
 
-// X and Y, using 1/32 microstepping for higher resolution -> 160 steps/mm
-#define NEMA17_MICROSTEPS_XY 32.0
+// X and Y, using 1/16 microstepping for higher resolution -> 80 steps/mm
+#define NEMA17_MICROSTEPS_XY 16.0
 #define NEMA17_MOTOR_STEPS_XY (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_XY)
 #define XY_PULLEY_PITCH 2.0
 #define XY_PULLEY_TEETH 20.0
 #define XY_STEPS (NEMA17_MOTOR_STEPS_XY / (XY_PULLEY_PITCH * XY_PULLEY_TEETH))
 
 // Z, using 1/4 microstepping that leads us to huge 1000 steps/mm for M5 threaded rod
-#define NEMA17_MICROSTEPS_Z 32.0
+// Z, using 1/16 microstepping that leads to 400 steps/mm for M8 8mm\r rod
+#define NEMA17_MICROSTEPS_Z 16.0
 #define Z_ROD_PITCH 8.0
 #define NEMA17_MOTOR_STEPS_Z (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_Z)
 #define Z_STEPS (NEMA17_MOTOR_STEPS_Z / Z_ROD_PITCH)
@@ -619,7 +620,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 120, 120, 3, 50 }
+#define DEFAULT_MAX_FEEDRATE          { 120, 120, 4, 50 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -649,8 +650,8 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-#define DEFAULT_XJERK                 20.0
-#define DEFAULT_YJERK                 20.0
+#define DEFAULT_XJERK                 10.0
+#define DEFAULT_YJERK                 10.0
 #define DEFAULT_ZJERK                  0.3
 #define DEFAULT_EJERK                 20.0
 
@@ -1156,7 +1157,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (40*60)
-#define HOMING_FEEDRATE_Z  (3*60)
+#define HOMING_FEEDRATE_Z  (4*60)
 
 // @section calibrate
 
