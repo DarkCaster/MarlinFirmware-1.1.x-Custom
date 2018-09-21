@@ -597,22 +597,21 @@
 // same for all axes
 #define NEMA17_FULL_STEPS 200.0
 
-// X and Y, using 1/16 microstepping for higher resolution -> 80 steps/mm
+// X and Y, using 1/16 microstepping -> 80 steps/mm
 #define NEMA17_MICROSTEPS_XY 16.0
 #define NEMA17_MOTOR_STEPS_XY (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_XY)
 #define XY_PULLEY_PITCH 2.0
 #define XY_PULLEY_TEETH 20.0
 #define XY_STEPS (NEMA17_MOTOR_STEPS_XY / (XY_PULLEY_PITCH * XY_PULLEY_TEETH))
 
-// Z, using 1/4 microstepping that leads us to huge 1000 steps/mm for M5 threaded rod
-// Z, using 1/16 microstepping that leads to 400 steps/mm for M8 8mm\r rod
+// Z, using 1/16 microstepping that leads to 400 steps/mm for THSL-200-8D 8mm\r rod
 #define NEMA17_MICROSTEPS_Z 16.0
 #define Z_ROD_PITCH 8.0
 #define NEMA17_MOTOR_STEPS_Z (NEMA17_FULL_STEPS * NEMA17_MICROSTEPS_Z)
 #define Z_STEPS (NEMA17_MOTOR_STEPS_Z / Z_ROD_PITCH)
 
 // Extruder's steps\mm was set for use with custom geared extruder drive: https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2
-// using 1/8 micro-stepping
+// using 1/8 micro-stepping for better torque
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 126.315f }
 
 /**
