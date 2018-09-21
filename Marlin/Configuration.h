@@ -375,9 +375,9 @@
 
   // E3D v6 hotend, using custom fan shroud and cotton thermal insulation tape
   // calibrated at 225 C with command: M303 C16 E0 S225
-  #define DEFAULT_Kp 17.69
-  #define DEFAULT_Ki 1.34
-  #define DEFAULT_Kd 58.32
+  #define DEFAULT_Kp 25.97
+  #define DEFAULT_Ki 2.01
+  #define DEFAULT_Kd 84.03
 
 #endif // PIDTEMP
 
