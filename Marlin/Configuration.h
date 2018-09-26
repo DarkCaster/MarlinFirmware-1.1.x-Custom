@@ -232,7 +232,7 @@
  *
  * :{ 0:'No power switch', 1:'ATX', 2:'X-Box 360' }
  */
-#define POWER_SUPPLY 1
+#define POWER_SUPPLY 0
 
 #if POWER_SUPPLY >= 1
   // Enable this option to leave the PSU off at startup.
