@@ -428,9 +428,9 @@
 
   // MK2B bed with glass
   // calibrated at 75 C with command: M303 C32 E-1 S75
-  #define DEFAULT_bedKp 344.69
-  #define DEFAULT_bedKi 64.73
-  #define DEFAULT_bedKd 458.87
+  #define DEFAULT_bedKp 301.49
+  #define DEFAULT_bedKi 56.62
+  #define DEFAULT_bedKd 401.36
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
