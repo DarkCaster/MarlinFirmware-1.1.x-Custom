@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 # overrides for Arduino Mega 2560 board
-set(ARDUINO_AVRDUDE_BAUD "250000" CACHE STRING "avrdude baud-rate (for optiboot)")
+set(ARDUINO_AVRDUDE_BAUD "115200" CACHE STRING "avrdude baud-rate (for optiboot)")
 set(ARDUINO_AVRDUDE_MCU "atmega2560" CACHE STRING "avrdude mcu")
 set(ARDUINO_MCU "atmega2560" CACHE STRING "-mmcu define for avr-gcc compiler")
 set(ARDUINO_F_CPU "16000000L" CACHE STRING "-DF_CPU define")
