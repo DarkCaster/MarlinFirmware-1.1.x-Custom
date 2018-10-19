@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.0)
 
 # overrides for Arduino Mega 2560 board
-#set(ARDUINO_MCU "atmega2560")
-#set(ARDUINO_F_CPU "16000000L")
-#set(ARDUINO_MODEL "AVR_MEGA2560")
-#set(ARDUINO_VARIANT "mega")
-#set(ARDUINO_VER "10807")
-#add_definitions("-D__AVR_ATmega2560__")
+set(ARDUINO_AVRDUDE_BAUD "250000")
+set(ARDUINO_AVRDUDE_MCU "atmega2560")
+set(ARDUINO_MCU "atmega2560")
+set(ARDUINO_F_CPU "16000000L")
+set(ARDUINO_MODEL "ARDUINO_AVR_MEGA2560")
+set(ARDUINO_VARIANT "mega")
+set(ARDUINO_VER "10807")
+
 set(CMAKE_TOOLCHAIN_FILE ArduinoCmakeBuilder/arduino-avr-toolchain.cmake)
 
 if((${CMAKE_GENERATOR} STREQUAL "NMake Makefiles JOM") AND (NOT EXISTS "${CMAKE_MAKE_PROGRAM}"))
