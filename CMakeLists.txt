@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.0)
 
 # overrides for Arduino Mega 2560 board
-set(ARDUINO_AVRDUDE_BAUD "250000")
-set(ARDUINO_AVRDUDE_MCU "atmega2560")
-set(ARDUINO_MCU "atmega2560")
-set(ARDUINO_F_CPU "16000000L")
-set(ARDUINO_MODEL "ARDUINO_AVR_MEGA2560")
-set(ARDUINO_VARIANT "mega")
-set(ARDUINO_VER "10807")
+set(ARDUINO_AVRDUDE_BAUD "250000" CACHE STRING "avrdude baud-rate (for optiboot)")
+set(ARDUINO_AVRDUDE_MCU "atmega2560" CACHE STRING "avrdude mcu")
+set(ARDUINO_MCU "atmega2560" CACHE STRING "-mmcu define for avr-gcc compiler")
+set(ARDUINO_F_CPU "16000000L" CACHE STRING "-DF_CPU define")
+set(ARDUINO_MODEL "ARDUINO_AVR_MEGA2560" CACHE STRING "-DARDUINO_* define")
+set(ARDUINO_VARIANT "mega" CACHE STRING "arduino variant")
+set(ARDUINO_VER "10807" CACHE STRING "arduino version")
 
 set(CMAKE_TOOLCHAIN_FILE ArduinoCmakeBuilder/arduino-avr-toolchain.cmake)
 
