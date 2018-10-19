@@ -24,8 +24,11 @@ set_avr_compiler_flags()
 add_arduino_library(EEPROM ${ARDUINO_LIBS_PATH})
 add_arduino_library(SPI ${ARDUINO_LIBS_PATH})
 add_arduino_library(Wire ${ARDUINO_LIBS_PATH})
-#add_arduino_library(U8g2_Arduino ${CMAKE_SOURCE_DIR}/Libraries SPI Wire)
+add_arduino_library(U8glib ${CMAKE_SOURCE_DIR} SPI Wire)
 
-add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} EEPROM SPI Wire)
+# fix warnings when compiling U8glib
+target_compile_options(U8glib PRIVATE "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
+
+add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} EEPROM U8glib)
 add_arduino_post_target(Marlin)
 add_arduino_upload_target(Marlin)
