@@ -1,3 +1,6 @@
 [submodule "ArduinoCmakeBuilder"]
 	path = ArduinoCmakeBuilder
 	url = https://github.com/DarkCaster/ArduinoCmakeBuilder.git
+[submodule "U8glib"]
+	path = U8glib
+	url = https://github.com/olikraus/U8glib_Arduino.git
