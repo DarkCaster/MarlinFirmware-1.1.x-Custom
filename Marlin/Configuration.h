@@ -896,7 +896,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 163
+#define X_BED_SIZE 162
 #define Y_BED_SIZE 167
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
@@ -1000,7 +1000,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28 false
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
