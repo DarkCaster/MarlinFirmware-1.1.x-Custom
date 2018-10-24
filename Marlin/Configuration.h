@@ -625,7 +625,7 @@
 
 // Extruder's steps\mm was set for use with custom geared extruder drive: https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2
 // using 1/8 micro-stepping for better torque
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 126.315f }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 128.8413f }
 
 /**
  * Default Max Feed Rate (mm/s)
