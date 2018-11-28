@@ -896,10 +896,10 @@
 #define Y_BED_SIZE 245
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 3
+#define X_MIN_POS -3
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 218
+#define X_MAX_POS 215
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 250
 
@@ -1159,7 +1159,7 @@
 #if ENABLED(Z_SAFE_HOMING)
   //#define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
   //#define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_X_POINT 0
+  #define Z_SAFE_HOMING_X_POINT -3
   #define Z_SAFE_HOMING_Y_POINT 0
 #endif
 
