@@ -388,9 +388,15 @@
 
   // Anet E10, using improved fan shroud and cotton thermal insulation tape
   // calibrated at 225 C with command: M303 C16 E0 S225
-  #define DEFAULT_Kp 25.97
-  #define DEFAULT_Ki 1.88
-  #define DEFAULT_Kd 89.90
+  //#define DEFAULT_Kp 25.97
+  //#define DEFAULT_Ki 1.88
+  //#define DEFAULT_Kd 89.90
+
+  // Anet E10, using improved fan shroud, no additional thermal insulation, noname chineese 12V heater from AliExpress
+  // calibrated at 235 C with command: M303 C32 E0 S235
+  #define DEFAULT_Kp 19.21
+  #define DEFAULT_Ki 1.18
+  #define DEFAULT_Kd 78.31
 
 #endif // PIDTEMP
 
