@@ -624,7 +624,7 @@
 
 // Extruder's steps\mm was set for use with custom geared extruder drive: https://github.com/DarkCaster/3DPrintingStuff/tree/master/GearedExtruderDrive_V2
 // For default Anet E10 direct extruder drive correct value is 95
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 252.63f }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 256.41945f }
 
 /**
  * Default Max Feed Rate (mm/s)
