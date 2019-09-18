@@ -21,6 +21,7 @@ include(ArduinoCmakeBuilder/arduino-build-helper.cmake)
 
 set_avr_compiler_flags()
 
+add_arduino_library(LiquidCrystal ${CMAKE_SOURCE_DIR})
 add_arduino_library(U8glib ${CMAKE_SOURCE_DIR})
 
 # fix warnings when compiling U8glib
