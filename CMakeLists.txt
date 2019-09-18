@@ -22,11 +22,11 @@ include(ArduinoCmakeBuilder/arduino-build-helper.cmake)
 set_avr_compiler_flags()
 
 add_arduino_library(LiquidCrystal ${CMAKE_SOURCE_DIR})
-add_arduino_library(U8glib ${CMAKE_SOURCE_DIR})
+#add_arduino_library(U8glib ${CMAKE_SOURCE_DIR})
 
 # fix warnings when compiling U8glib
-target_compile_options(U8glib PRIVATE "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
+#target_compile_options(U8glib PRIVATE "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
 
-add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} U8glib)
+add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} LiquidCrystal)
 add_arduino_post_target(Marlin)
 add_arduino_upload_target(Marlin)
