@@ -382,10 +382,14 @@
 
   // E3D v6 hotend, using custom fan shroud and cotton thermal insulation tape
   // calibrated at 225 C with command: M303 C16 E0 S225
-  #define DEFAULT_Kp 25.97
-  #define DEFAULT_Ki 2.01
-  #define DEFAULT_Kd 84.03
+  //#define DEFAULT_Kp 25.97
+  //#define DEFAULT_Ki 2.01
+  //#define DEFAULT_Kd 84.03
 
+  // E3D v6 hotend, 24v heater, no-termal insulation
+  #define DEFAULT_Kp 19.16
+  #define DEFAULT_Ki 1.98
+  #define DEFAULT_Kd 46.30
 #endif // PIDTEMP
 
 //===========================================================================
@@ -435,9 +439,14 @@
 
   // MK2B bed with glass
   // calibrated at 75 C with command: M303 C32 E-1 S75
-  #define DEFAULT_bedKp 301.49
-  #define DEFAULT_bedKi 56.62
-  #define DEFAULT_bedKd 401.36
+  //#define DEFAULT_bedKp 301.49
+  //#define DEFAULT_bedKi 56.62
+  //#define DEFAULT_bedKd 401.36
+
+  // MK2B bed with glass, 24v
+  #define DEFAULT_bedKp 297.94
+  #define DEFAULT_bedKi 56.83
+  #define DEFAULT_bedKd 390.53
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
