@@ -28,5 +28,6 @@ add_arduino_library(LiquidCrystal ${CMAKE_SOURCE_DIR})
 #target_compile_options(U8glib PRIVATE "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
 
 add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} LiquidCrystal)
+target_compile_options(Marlin PRIVATE "-Wno-expansion-to-defined" "-Wno-implicit-fallthrough")
 add_arduino_post_target(Marlin)
 add_arduino_upload_target(Marlin)
