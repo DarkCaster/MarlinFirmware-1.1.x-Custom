@@ -51,20 +51,22 @@ void endstop_ISR(void) { endstops.update(); }
  * There are more PCI-enabled processor pins on Port J, but they are not connected to Arduino MEGA.
  */
 #if defined(ARDUINO_AVR_MEGA2560) || defined(ARDUINO_AVR_MEGA)
+  #define digitalPinHasPCICR(p)   (WITHIN(p, 10, 15) || WITHIN(p, 50, 53) || WITHIN(p, 62, 69))
+
   #undef  digitalPinToPCICR
-  #define digitalPinToPCICR(p)    ( WITHIN(p, 10, 15) || \
-                                    WITHIN(p, 50, 53) || \
-                                    WITHIN(p, 62, 69) ? &PCICR : (uint8_t*)0 )
+  #define digitalPinToPCICR(p)    (digitalPinHasPCICR(p) ? (&PCICR) : nullptr)
+
   #undef  digitalPinToPCICRbit
   #define digitalPinToPCICRbit(p) ( WITHIN(p, 10, 13) || WITHIN(p, 50, 53) ? 0 : \
                                     WITHIN(p, 14, 15) ? 1 : \
                                     WITHIN(p, 62, 69) ? 2 : \
                                     0 )
   #undef  digitalPinToPCMSK
-  #define digitalPinToPCMSK(p)    ( WITHIN(p, 10, 13) || WITHIN(p, 50, 53) ? &PCMSK0 : \
-                                    WITHIN(p, 14, 15) ? &PCMSK1 : \
-                                    WITHIN(p, 62, 69) ? &PCMSK2 : \
-                                    (uint8_t *)0 )
+  #define digitalPinToPCMSK(p)    (WITHIN(p, 10, 13) || WITHIN(p, 50, 53) ? (&PCMSK0) : \
+	                                 WITHIN(p, 14, 15) ? (&PCMSK1) : \
+	                                 WITHIN(p, 62, 69) ? (&PCMSK2) : \
+	                                 nullptr)
+
   #undef  digitalPinToPCMSKbit
   #define digitalPinToPCMSKbit(p) ( WITHIN(p, 10, 13) ? ((p) - 6) : \
                                     (p) == 14 || (p) == 51 ? 2 : \
@@ -78,9 +80,11 @@ void endstop_ISR(void) { endstops.update(); }
 
 // Install Pin change interrupt for a pin. Can be called multiple times.
 void pciSetup(const int8_t pin) {
-  SBI(*digitalPinToPCMSK(pin), digitalPinToPCMSKbit(pin));  // enable pin
-  SBI(PCIFR, digitalPinToPCICRbit(pin)); // clear any outstanding interrupt
-  SBI(PCICR, digitalPinToPCICRbit(pin)); // enable interrupt for the group
+	if (digitalPinToPCMSK(pin) != nullptr) {
+		SBI(*digitalPinToPCMSK(pin), digitalPinToPCMSKbit(pin));  // enable pin
+		SBI(PCIFR, digitalPinToPCICRbit(pin)); // clear any outstanding interrupt
+		SBI(PCICR, digitalPinToPCICRbit(pin)); // enable interrupt for the group
+	}
 }
 
 
