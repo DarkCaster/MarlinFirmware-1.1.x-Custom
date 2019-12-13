@@ -638,14 +638,14 @@
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 128.8413f }
 
 // using 1/4 micro-stepping for even better torque
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 64.0f }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 64.5f }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 225, 225, 12, 50 }
+#define DEFAULT_MAX_FEEDRATE          { 225, 225, 7, 50 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -1179,8 +1179,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (80*60)
-#define HOMING_FEEDRATE_Z  (12*60)
+#define HOMING_FEEDRATE_XY (40*60)
+#define HOMING_FEEDRATE_Z  (7*60)
 
 // @section calibrate
 
