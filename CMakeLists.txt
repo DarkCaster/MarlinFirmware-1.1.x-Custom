@@ -7,7 +7,6 @@ set(ARDUINO_MCU "atmega2560" CACHE STRING "-mmcu define for avr-gcc compiler")
 set(ARDUINO_F_CPU "16000000L" CACHE STRING "-DF_CPU define")
 set(ARDUINO_MODEL "ARDUINO_AVR_MEGA2560" CACHE STRING "-DARDUINO_* define")
 set(ARDUINO_VARIANT "mega" CACHE STRING "arduino variant")
-set(ARDUINO_VER "10807" CACHE STRING "arduino version")
 
 set(CMAKE_TOOLCHAIN_FILE ArduinoCmakeBuilder/arduino-avr-toolchain.cmake)
 
@@ -27,5 +26,6 @@ add_arduino_library(U8glib ${CMAKE_SOURCE_DIR})
 target_compile_options(U8glib PRIVATE "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
 
 add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} U8glib)
+target_compile_options(Marlin PRIVATE "-Wno-expansion-to-defined" "-Wno-implicit-fallthrough")
 add_arduino_post_target(Marlin)
 add_arduino_upload_target(Marlin)

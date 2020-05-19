@@ -4,3 +4,6 @@
 [submodule "U8glib"]
 	path = U8glib
 	url = https://github.com/olikraus/U8glib_Arduino.git
+[submodule "LiquidCrystal"]
+	path = LiquidCrystal
+	url = https://github.com/arduino-libraries/LiquidCrystal.git
