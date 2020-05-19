@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 
-# overrides for Arduino Mega 2560 board
+# overrides for Anet board v1.0
 set(ARDUINO_AVRDUDE_BAUD "250000" CACHE STRING "avrdude baud-rate (for optiboot)")
-set(ARDUINO_AVRDUDE_MCU "atmega2560" CACHE STRING "avrdude mcu")
-set(ARDUINO_MCU "atmega2560" CACHE STRING "-mmcu define for avr-gcc compiler")
+set(ARDUINO_AVRDUDE_MCU "atmega1284p" CACHE STRING "avrdude mcu")
+set(ARDUINO_MCU "atmega1284p" CACHE STRING "-mmcu define for avr-gcc compiler")
 set(ARDUINO_F_CPU "16000000L" CACHE STRING "-DF_CPU define")
-set(ARDUINO_MODEL "ARDUINO_AVR_MEGA2560" CACHE STRING "-DARDUINO_* define")
-set(ARDUINO_VARIANT "mega" CACHE STRING "arduino variant")
+set(ARDUINO_MODEL "ARDUINO_AVR_SANGUINO" CACHE STRING "-DARDUINO_* define")
+set(ARDUINO_VARIANT "sanguino" CACHE STRING "arduino variant")
 
 set(CMAKE_TOOLCHAIN_FILE ArduinoCmakeBuilder/arduino-avr-toolchain.cmake)
 
