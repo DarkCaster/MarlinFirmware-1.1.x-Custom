@@ -31,7 +31,7 @@ set_avr_compiler_flags()
 add_arduino_library(U8glib ${CMAKE_SOURCE_DIR})
 
 # fix warnings when compiling U8glib
-target_compile_options(U8glib PRIVATE "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
+target_compile_options(U8glib PRIVATE "-Wno-unused-const-variable" "-Wno-unused-parameter" "-Wno-sign-compare" "$<$<COMPILE_LANGUAGE:C>:-Wno-old-style-declaration>")
 
 add_arduino_sketch(Marlin ${CMAKE_SOURCE_DIR} U8glib)
 target_compile_options(Marlin PRIVATE "-Wno-expansion-to-defined" "-Wno-implicit-fallthrough")
