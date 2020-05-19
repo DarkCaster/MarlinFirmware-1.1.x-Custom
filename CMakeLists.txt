@@ -16,6 +16,14 @@ endif()
 
 project(MarlinFirmware C CXX ASM)
 
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
+	file(TO_CMAKE_PATH "$ENV{LOCALAPPDATA}" LOCALAPPDATA)
+	set(ARDUINO_VARIANTS_SEARCH_PATH "${LOCALAPPDATA}/Arduino*/packages/custom_boards/hardware/${ARDUINO_ARCH}/*/variants" CACHE PATH "Custom arduino-variant search path")
+elseif(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
+	file(TO_CMAKE_PATH "$ENV{HOME}" HOME)
+	set(ARDUINO_VARIANTS_SEARCH_PATH "${HOME}/.arduino*/packages/custom_boards/hardware/${ARDUINO_ARCH}/*/variants" CACHE PATH "Custom arduino-variant search path")
+endif()
+
 include(ArduinoCmakeBuilder/arduino-build-helper.cmake)
 
 set_avr_compiler_flags()
