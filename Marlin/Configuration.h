@@ -1773,6 +1773,11 @@
                                   // A clone of the RepRapDiscount full graphics display but with
                                   // different pins/wiring (see pins_ANET_10.h).
 
+//fix display distorsion for my particular printer
+#define ST7920_DELAY_1 DELAY_NS(0)
+#define ST7920_DELAY_2 DELAY_NS(125)
+#define ST7920_DELAY_3 DELAY_NS(200)
+
 //
 // MKS OLED 1.3" 128 × 64 FULL GRAPHICS CONTROLLER
 // http://reprap.org/wiki/MKS_12864OLED
