@@ -633,7 +633,7 @@
  */
 // Extruder feedrate was reduced for use with custom geared extruder drive (see link above)
 // For default Anet E10 direct extruder drive you may set E0 feedrate value to 50
-#define DEFAULT_MAX_FEEDRATE          { 120, 120, 7, 50 }
+#define DEFAULT_MAX_FEEDRATE          { 225, 225, 7, 50 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -641,7 +641,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 800, 800, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2500, 2500, 100, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -652,8 +652,8 @@
  *   M204 T    Travel Acceleration
  */
 #define DEFAULT_ACCELERATION          200    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  2500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   800    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_RETRACT_ACCELERATION  5000   // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   2500   // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
