@@ -638,7 +638,7 @@
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 128.8413f }
 
 // using 1/4 micro-stepping for even better torque
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 64.5f }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XY_STEPS, XY_STEPS, Z_STEPS, 103.5f }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -882,7 +882,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true
+#define INVERT_E0_DIR false
 #define INVERT_E1_DIR true
 #define INVERT_E2_DIR true
 #define INVERT_E3_DIR true
